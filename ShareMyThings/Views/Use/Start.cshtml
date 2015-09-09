@@ -1,0 +1,27 @@
+﻿@model ShareMyThings.Controllers.ViewModelData.UserControllerViewModel
+
+
+@{
+    ViewBag.Title = "Start";
+}
+
+<div class="bodytext primary">Hi <strong>@Model.UserName</strong> start using <strong>@Model.ItemName</strong></div>
+
+<div>
+    <div class="error secondary">
+        <a href="../../BookintController/Book" class="button">Not me</a>
+    </div>
+
+    <div class="bodytext primary">
+        Please confirm the odometer value to be <strong>@Model.ItemUsageValue</strong> km
+    </div>
+
+    <div class="confirm primary">
+        <a href="../OK/@Model.ItemId" class="button">OK</a>
+    </div>
+
+    <div class="attention secondary">
+        <a href="../ChangeStartValue/@Model.ItemId" class="button">Change value</a>
+    </div>
+</div>
+

@@ -1,0 +1,81 @@
+﻿@model ShareMyThings.Controllers.ViewModelData.UserControllerViewModel
+
+
+@{
+    ViewBag.Title = "OK have a nice trip";
+    ViewBag.NextName = "Kirsten Bjerritsgård";
+    ViewBag.NextPhone = "4010 5906";
+}
+
+<div class="Table">
+    <div class="Title primary">
+        <p>@Model.UserName<br />have a nice trip using<br />@Model.ItemName</p>
+    </div>
+    <div class="Heading">
+        <div class="Cell">
+            <p>Message</p>
+        </div>
+        <div class="Cell">
+            <p>&nbsp;</p>
+        </div>
+        <div class="Cell">
+            <p>Time</p>
+        </div>
+    </div>
+    <div class="Row">
+        <div class="Cell">
+            <p>Your reservation ends at</p>
+        </div>
+        <div class="Cell makeup-ok">
+            <p></p>
+        </div>
+        <div class="Cell">
+            <p>14:00</p>
+        </div>
+    </div>
+    <div class="Row">
+        <div class="Cell">
+            <p>You have slack until</p>
+        </div>
+        <div class="Cell makeup-attention">
+            <p></p>
+        </div>
+        <div class="Cell">
+            <p>15:00</p>
+        </div>
+    </div>
+    <div class="Row">
+        <div class="Cell">
+            <p>Next reservation starts at</p>
+        </div>
+        <div class="Cell makeup-warning">
+            <p>*</p>
+        </div>
+        <div class="Cell">
+            <p>14:30</p>
+        </div>
+    </div>
+    <div class="Row">
+        <div class="Cell">
+            <p>Latest time of return</p>
+        </div>
+        <div class="Cell makeup-strong-warning">
+            <p></p>
+        </div>
+        <div class="Cell">
+            <p>15:30</p>
+        </div>
+    </div>
+</div>
+
+<br />
+<div class="primary">
+    <div class="makeup-warning inline">* @ViewBag.NextName (<div class="inline makeup-highlight">@ViewBag.NextPhone</div>) will be happy if you return before schedule</div>
+</div>
+<div class="primary">
+    <div class="confirm primary">
+        <a href="../OK/@ViewBag.Item" class="button">Refresh</a>
+    </div>
+</div>
+
+

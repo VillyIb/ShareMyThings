@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+
+        /* http://www.innofied.com/25-css-best-practices-we-follow-at-innofied/ */
+        /* http://htmldog.com/reference/cssproperties/ */ 
+        /* https://github.com/bendc/frontend-guidelines  */
+
+        .inline {
+            display: inline;
+        }
+
+        /* http://www.bestcssbuttongenerator.com/#/2 */
+
+        a.button {
+            background-color: #599bb3;
+            -moz-border-radius: 8px;
+            -webkit-border-radius: 8px;
+            border-radius: 8px;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 13px 32px;
+            text-decoration: none;
+        }
+
+        .myButton:hover {
+            background-color: #408c99;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+        /*confirm*/
+
+        .confirm a.button {
+            background-color: #44c767;
+            -moz-border-radius: 8px;
+            -webkit-border-radius: 8px;
+            border-radius: 8px;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 13px 32px;
+            text-decoration: none;
+        }
+
+        .confirm .myButton:hover {
+            background-color: #5cbf2a;
+        }
+
+        /*error*/
+
+        .error a.button {
+            background-color: #fc8d83;
+            -moz-border-radius: 8px;
+            -webkit-border-radius: 8px;
+            border-radius: 8px;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 32px;
+            text-decoration: none;
+        }
+
+        .error .myButton:hover {
+            background-color: #e4685d;
+        }
+
+        /*attention*/
+
+        .attention a.button {
+            background-color: #f0c911;
+            -moz-border-radius: 8px;
+            -webkit-border-radius: 8px;
+            border-radius: 8px;
+            display: inline-block;
+            cursor: pointer;
+            color: #c92200;
+            font-family: Arial;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 32px;
+            text-decoration: none;
+        }
+
+        .attention .myButton:hover {
+            background-color: #f2ab1e;
+        }
+
+
+        /*other*/
+
+        .bodytext {
+            font-family: Arial;
+            font-size: 20px;
+            /*font-weight: bold;*/
+            padding: 10px;
+        }
+
+        .primary {
+            /* top right bottom left */
+            padding: 0px 0px 20px 0px;
+        }
+
+        .secondary {
+            /* top right bottom left */
+            padding: 0px 0px 10px 0px;
+        }
+
+        .Table {
+            display: table;
+        }
+
+        .Title {
+            display: table-caption;
+            text-align: center;
+            font-weight: bold;
+            font-size: larger;
+        }
+
+        .Heading {
+            display: table-row;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .Row {
+            display: table-row;
+        }
+
+        .Cell {
+            display: table-cell;
+            border: solid;
+            border-width: thin;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        /* Makeup CSS */  /* Typography */
+
+        .makeup-highlight {
+            font-weight: 700;
+        }
+
+        .makeup-ok {
+            background-color: #44c767;
+        }
+
+        .makeup-attention {
+            background-color: #f0c911;
+            color: #000000;
+        }
+
+        .makeup-warning {
+            background-color: #fc8d83;
+        }
+
+        .makeup-strong-warning {
+            background-color: #ff0000;
+            font-weight:bold;
+        }
+
+        .makeup-error {
+            background-color: #fc8d83;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Share my things", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("Start", "Start", "Use", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Stop", "Stop", "Use", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Change", "Change", "Use", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                    @*                   "Text" - "Method" - "Controller", new { area = "Area" }, null )     *@
+                    @*<li>@Html.ActionLink("Start", "Index", "Start", new { area = "Use" }, null)</li>
+                        <li>@Html.ActionLink("Stop", "Index", "Stop", new { area = "Use" }, null)</li>
+                        <li>@Html.ActionLink("Change", "Index", "Change", new { area = "Use" }, null)</li>*@
+
+                    <li>@Html.ActionLink("Start", "Start", "Use")</li>
+                    <li>@Html.ActionLink("Stop", "Stop", "Use")</li>
+                    <li>@Html.ActionLink("Change", "Change", "Use")</li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
