@@ -7,9 +7,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
-
         /* http://www.innofied.com/25-css-best-practices-we-follow-at-innofied/ */
-        /* http://htmldog.com/reference/cssproperties/ */ 
+        /* http://htmldog.com/reference/cssproperties/ */
         /* https://github.com/bendc/frontend-guidelines  */
 
         .inline {
@@ -140,6 +139,7 @@
             display: table-row;
             font-weight: bold;
             text-align: center;
+            background: lavender;
         }
 
         .Row {
@@ -150,11 +150,27 @@
             display: table-cell;
             border: solid;
             border-width: thin;
-            padding-left: 5px;
-            padding-right: 5px;
+            padding: 10px;
         }
 
-        /* Makeup CSS */  /* Typography */
+        /* Makeup CSS */ /* Typography */
+
+        /* center text in table XuSelectList */
+        #XuSelectList .Row .Cell {
+            text-align: center;
+        }
+
+        #XuSelectList .Row .Col1 {
+            font-weight: bold;
+        }
+
+        #XuSelectList .RowEven {
+            background-color:lightcyan
+        }
+
+        #XuSelectList .RowOdd {
+            background-color:lightyellow
+        }
 
         .makeup-highlight {
             font-weight: 700;
@@ -175,12 +191,17 @@
 
         .makeup-strong-warning {
             background-color: #ff0000;
-            font-weight:bold;
+            font-weight: bold;
         }
 
         .makeup-error {
             background-color: #fc8d83;
-            font-weight:bold;
+            font-weight: bold;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 5px 10px 5px 10px; /* Top->Right->Botton->Left */
         }
     </style>
 </head>
@@ -208,8 +229,7 @@
                     @*<li>@Html.ActionLink("Start", "Index", "Start", new { area = "Use" }, null)</li>
                         <li>@Html.ActionLink("Stop", "Index", "Stop", new { area = "Use" }, null)</li>
                         <li>@Html.ActionLink("Change", "Index", "Change", new { area = "Use" }, null)</li>*@
-
-                    <li>@Html.ActionLink("Start", "Start", "Use")</li>
+                    <li>@Html.ActionLink("Select", "SelectItem", "Use")</li>
                     <li>@Html.ActionLink("Stop", "Stop", "Use")</li>
                     <li>@Html.ActionLink("Change", "Change", "Use")</li>
 

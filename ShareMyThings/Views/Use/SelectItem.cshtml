@@ -1,0 +1,53 @@
+﻿@model ShareMyThings.ViewModel.Use.SelectItemViewModel
+
+@{
+    ViewBag.Title = "SelectItem";
+}
+
+<h2>@Model.Headline</h2>
+
+
+<div class="Table" id="XuSelectList">
+    @*<div class="Title primary">
+            <p>@Model.Headline</p>
+        </div>*@
+    <div class="Heading">
+        <div class="Cell">
+            Item
+        </div>
+        <div class="Cell">
+            Start use
+        </div>
+        <div class="Cell">
+            Stop use
+        </div>
+        <div class="Cell">
+            Status
+        </div>
+        <div class="Cell">
+            Change reservation
+        </div>
+    </div>
+
+    @foreach (var item in @Model.ItemList)
+    {
+
+        <div class="Row Row@(item.Key%2==0?"Even":"Odd")">
+            <div class="Cell Col1">
+                @item.Display
+            </div>
+            <div class="Cell Col2">
+                @Html.ActionLink("Start", "Start", "Use", new { id = @item.Key }, null)
+            </div>
+            <div class="Cell Col3">
+                @Html.ActionLink("Stop", "Stop", "Use", new { id = @item.Key }, null)
+            </div>
+            <div class="Cell Col4">
+                @Html.ActionLink("Status", "OK", "Use", new { id = @item.Key }, null)
+            </div>
+            <div class="Cell Col5">
+                @Html.ActionLink("Change", "Change", "Use", new { id = @item.Key }, null)
+            </div>
+        </div>
+    }
+</div>
