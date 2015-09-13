@@ -1,24 +1,26 @@
-﻿
+﻿@model ShareMyThings.ViewModel.Use.ChangeStartValueViewModel
+
 @{
     ViewBag.Title = "ChangeStartValue";
 }
 
-<div class="bodytext primary">Enter new odometer value for <strong>@ViewBag.Item</strong></div>
+<div class="bodytext primary">@Model.Headline</strong></div>
 
 <div>
     <div class="primary">
         @* NOTE preciesly '[09]*' will give a nice 0..9 keyboard on iphone *@
-        <input id="XuOdometerValue" inputmode="numeric" type="number" value="123456" min="10000" pattern="[0-9]*" />
+        <input id="XuOdometerValue" inputmode="numeric" type="number" value=@Model.ItemValueCurrent min="10000" pattern="[0-9]*" />@Model.ItemValueUnitName
     </div>
 
     <div class="primary">
         @* NOTE preciesly '[09]*' will give a nice 0..9 keyboard on iphone *@
-        <input id="XuOdometerValue" inputmode="numeric" value="123456" min="10000" pattern="[0-9]*" />
+        <input id="XuOdometerValue" inputmode="numeric" value=@Model.ItemValueNew min="10000" pattern="[0-9]*" /> @Model.ItemValueUnitName
     </div>
     
 
     <div class="primary">
-        <a href="../Start/@ViewBag.Item" class="button">OK</a>
+        @*<a href="../Start/@Model.Id" class="button">OK</a>*@
+        @Html.ActionLink("OK", "Start", "Use", new { id = Model.Id, Demo = @Model.DemoValue }, new { @class = "button", title = "Start driving " + Model.ItemName})
     </div>
 
 </div>

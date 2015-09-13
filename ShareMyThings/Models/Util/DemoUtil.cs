@@ -12,7 +12,7 @@ namespace ShareMyThings.Models.Util
 {
     public class DemoUtil<T> where T : new()
     {
-        public bool LoadDemo(out T value, out String demoValue, HttpRequestBase request, T template = default(T))
+        public bool LoadDemo(out T value, out String demoValue, HttpRequestBase request, string id, T template = default(T))
         {
             var result = false;
             value = default(T);
@@ -31,7 +31,17 @@ namespace ShareMyThings.Models.Util
                 var root = HostingEnvironment.ApplicationPhysicalPath;
 
 
-                var filename = String.Format("{0}_{1}.xml", methodName, demoValue);
+
+                string filename;
+
+                if (string.IsNullOrWhiteSpace(id))
+                {
+                    filename = string.Format("{0}_{1}.xml", methodName, demoValue);
+                }
+                else
+                {
+                    filename = string.Format("{0}_{1}_{2}.xml", methodName, id, demoValue);
+                }
 
                 var file = new FileInfo(Path.Combine(root, "App_Data", controllerName, filename));
 

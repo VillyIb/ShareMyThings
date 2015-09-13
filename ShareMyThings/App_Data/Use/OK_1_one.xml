@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<Ok xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ItemId>1</ItemId>
+  <UserName>Villy Ib Jørgensen</UserName>
+  <ItemName>Chilien</ItemName>
+  <ReservationEnd>2015-09-13T16:29:37.3937623+02:00</ReservationEnd>
+  <ReservationSlackEnd>2015-09-13T18:29:37.3937623+02:00</ReservationSlackEnd>
+  <ShowNextReservation>true</ShowNextReservation>
+  <NextReservationSlackStart>2015-09-13T17:29:37.3937623+02:00</NextReservationSlackStart>
+  <NextReservationStart>2015-09-13T19:29:37.3937623+02:00</NextReservationStart>
+  <NextUserName>Kirsten Bjerritsgård</NextUserName>
+  <NextUserPhone>4010 9506</NextUserPhone>
+  <Now>2015-09-14T15:45:37.3937623+02:00</Now>
+</Ok>

@@ -31,51 +31,51 @@ namespace ShareMyThings.Controllers
             //
             // I: The user can refresh the page to see the next reservation by pressing Refresh
 
-            var model = new UserControllerViewModel
-            {
-                UserName = "Villy Ib Jørgensen"
-            };
+            //var model = new UserControllerViewModel
+            //{
+            //    UserName = "Villy Ib Jørgensen"
+            //};
 
-            long itemId;
-            if (long.TryParse(id, out itemId))
-            {
-                model.ItemId = itemId;
-                model.ItemName = ItemNameMap.ToName(itemId);
-            }
-            else
-            {
-                model.ItemId = ItemNameMap.ToId(id);
-                model.ItemName = id;
-            }
+            //long itemId;
+            //if (long.TryParse(id, out itemId))
+            //{
+            //    model.ItemId = itemId;
+            //    model.ItemName = ItemNameMap.ToName(itemId);
+            //}
+            //else
+            //{
+            //    model.ItemId = ItemNameMap.ToId(id);
+            //    model.ItemName = id;
+            //}
 
-            return View(model);
-        }
+            //return View(model);
 
-
-        public ActionResult SelectItem()
-        {
-            var model = new SelectItemViewModel
-            {
-                Headline = "Select an action on an item",
-            };
+            var viewModel = new OkViewModel();
 
             var useLiveData = true;
-            SelectItem modelData;
+            Ok modelData;
 
             { // DemoData
-                var template = new SelectItem
+                var template = new Ok
                 {
-                    ItemList = new List<SelectItemRow>
-                    {
-                        new SelectItemRow {Key=1,Display =  "ItemName" }
-                    }
+                    ItemId = 1,
+                    UserName = "UserName",
+                    ItemName = "ItemName",
+                    ReservationEnd = DateTime.Now,
+                    ReservationSlackEnd = DateTime.Now,
+                    ShowNextReservation = true,
+                    NextReservationSlackStart = DateTime.Now,
+                    NextReservationStart = DateTime.Now,
+                    NextUserName = "NextUserName",
+                    NextUserPhone = "NextUserPhone",
+                    Now = DateTime.Now,
                 };
 
                 string demoValue;
 
-                if (new DemoUtil<SelectItem>().LoadDemo(out modelData, out demoValue, Request, template))
+                if (new DemoUtil<Ok>().LoadDemo(out modelData, out demoValue, Request, id, template))
                 {
-                    model.DemoValue = demoValue;
+                    viewModel.DemoValue = demoValue;
                     useLiveData = false;
                 }
             }
@@ -83,7 +83,232 @@ namespace ShareMyThings.Controllers
             if (useLiveData)
             {
                 // TODO get data from Model.
-                modelData = new SelectItem { ItemList = new List<SelectItemRow>() };
+                modelData = new Ok
+                {
+                    ItemId = 1,
+                    UserName = "UserName",
+                    ItemName = "ItemName",
+                    ReservationEnd = DateTime.Now,
+                    ReservationSlackEnd = DateTime.Now,
+                    ShowNextReservation = true,
+                    NextReservationSlackStart = DateTime.Now,
+                    NextReservationStart = DateTime.Now,
+                    NextUserName = "NextUserName",
+                    NextUserPhone = "NextUserPhone",
+                    Now = DateTime.Now,
+                };
+            }
+
+
+            viewModel.Headline = "Headline";
+
+            var now = modelData.Now;
+
+            {
+                var current = modelData.ReservationEnd;
+
+
+                string due;
+                string time;
+
+                TimeSpan difference;
+
+
+                if (current.Date != now.Date)
+                {
+                    // not today
+                    time = string.Format("{0:yyyy-MM-dd HH:mm}", current);
+                }
+                else
+                {
+                    // today
+                    time = string.Format("{0:HH:mm}", current);
+                }
+
+
+                var isDue = now > current;
+                if (isDue)
+                {
+                    due = "passed";
+                }
+                else
+                {
+                    difference = current.Subtract(now);
+
+                    if (difference.TotalHours > 24.0d)
+                    {
+                        // more than 24 hours.
+                        due = string.Format("{0}+ h", (int)difference.TotalHours);
+                    }
+                    else
+                    {
+                        due = string.Format(@"{0:hh\:mm}", difference);
+                    }
+                }
+
+                viewModel.ReservationEnd = new OkViewModelRow { Alert = "", Due = due, Time = time };
+            }
+
+            {
+                var current = modelData.ReservationSlackEnd;
+                var isDue = now > current;
+
+                string due;
+                string time;
+
+                TimeSpan difference;
+
+                if (isDue)
+                {
+                    due = "passed";
+                    difference = now.Subtract(current);
+                    if (difference.TotalDays > 1.0d)
+                    {
+                        time = string.Format("-{0} days", (int)difference.TotalDays);
+                    }
+                    else
+                    {
+                        time = string.Format(@"-{0:hh\:mm}", difference);
+                    }
+                }
+                else
+                {
+                    difference = current.Subtract(now);
+
+                    if (difference.TotalDays > 1.0d)
+                    {
+                        time = string.Format("{0:yyyy-MM-dd}", current);
+                        due = string.Format("{0} h", (int)difference.TotalHours);
+                    }
+                    else
+                    {
+                        time = string.Format(@"{0:HH\:mm}", current);
+                        due = difference.ToString(@"hh\:mm");
+                    }
+                }
+                viewModel.ReservationSlackEnd = new OkViewModelRow { Alert = "", Due = due, Time = time };
+            }
+
+            {
+                var current = modelData.NextReservationSlackStart;
+                var isDue = now > current;
+
+                string due;
+                string time;
+
+                TimeSpan difference;
+
+                if (isDue)
+                {
+                    due = "passed";
+                    difference = now.Subtract(current);
+                    if (difference.TotalDays > 1.0d)
+                    {
+                        time = string.Format("-{0} days", (int)difference.TotalDays);
+                    }
+                    else
+                    {
+                        time = string.Format(@"-{0:hh\:mm}", difference);
+                    }
+                }
+                else
+                {
+                    difference = current.Subtract(now);
+
+                    if (difference.TotalDays > 1.0d)
+                    {
+                        time = string.Format("{0:yyyy-MM-dd}", current);
+                        due = string.Format("{0} h", (int)difference.TotalHours);
+                    }
+                    else
+                    {
+                        time = string.Format(@"{0:HH\:mm}", current);
+                        due = difference.ToString(@"hh\:mm");
+                    }
+                }
+                viewModel.NextReservationSlackStart = new OkViewModelRow { Alert = "", Due = due, Time = time };
+            }
+
+            {
+                var current = modelData.NextReservationStart;
+                var isDue = now > current;
+
+                string due;
+                string time;
+
+                TimeSpan difference;
+
+                if (isDue)
+                {
+                    due = "passed";
+                    difference = now.Subtract(current);
+                    if (difference.TotalDays > 1.0d)
+                    {
+                        time = string.Format("-{0} days", (int)difference.TotalDays);
+                    }
+                    else
+                    {
+                        time = string.Format(@"-{0:hh\:mm}", difference);
+                    }
+                }
+                else
+                {
+                    difference = current.Subtract(now);
+
+                    if (difference.TotalDays > 1.0d)
+                    {
+                        time = string.Format("{0:yyyy-MM-dd}", current);
+                        due = string.Format("{0} h", (int)difference.TotalHours);
+                    }
+                    else
+                    {
+                        time = string.Format(@"{0:hh\:mm}", difference);
+                        due = difference.ToString(@"hh\:mm");
+                    }
+                }
+                viewModel.NextReservationStart = new OkViewModelRow { Alert = "", Due = due, Time = time };
+            }
+
+            viewModel.ShowNextReservation = modelData.ShowNextReservation;
+            viewModel.NextReservationDetails = "details";
+
+            return View(viewModel);
+
+        }
+
+
+        public ActionResult SelectItem()
+        {
+            var viewModel = new SelectItemViewModel
+            {
+                Headline = "Select an action on an item",
+            };
+
+            var useLiveData = true;
+            Select modelData;
+
+            { // DemoData
+                var template = new Select
+                {
+                    ItemList = new List<SelectRow>
+                    {
+                        new SelectRow {Key=1,Display =  "ItemName" }
+                    }
+                };
+
+                string demoValue;
+
+                if (new DemoUtil<Select>().LoadDemo(out modelData, out demoValue, Request, null, template))
+                {
+                    viewModel.DemoValue = demoValue;
+                    useLiveData = false;
+                }
+            }
+
+            if (useLiveData)
+            {
+                // TODO get data from Model.
+                modelData = new Select { ItemList = new List<SelectRow>() };
             }
 
             var itemList = new List<ItemRow>();
@@ -92,9 +317,9 @@ namespace ShareMyThings.Controllers
                 itemList.Add(new ItemRow { Key = row.Key, Display = row.Display, Url = string.Format("OK/{0}", row.Key) });
             }
 
-            model.ItemList = itemList;
+            viewModel.ItemList = itemList;
 
-            return View(model);
+            return View(viewModel);
         }
 
 
@@ -115,9 +340,57 @@ namespace ShareMyThings.Controllers
             // I: Second press Save on the same value 
             // R: The value is accepted the value and the Start page is shown
 
-            ViewBag.Item = id ?? "";
-            ViewBag.OdometerValue = "123.456";
-            return View();
+
+            var viewModel = new ChangeStartValueViewModel();
+
+            var useLiveData = true;
+            ChangeStartValue modelData;
+
+            { // DemoData
+                var template = new ChangeStartValue
+                {
+                    Id = 1,
+                    Name = "Item name",
+                    Value = 123456m,
+                    UnitsName = "unit name",
+                    ValueLabel = "odometer",
+                };
+
+                string demoValue;
+
+                if (new DemoUtil<ChangeStartValue>().LoadDemo(out modelData, out demoValue, Request, id, template))
+                {
+                    viewModel.DemoValue = demoValue;
+                    useLiveData = false;
+                }
+            }
+
+            if (useLiveData)
+            {
+                // TODO get data from Model.
+                modelData = new ChangeStartValue
+                {
+                    Id = 1,
+                    Name = "Item name",
+                    Value = 123456m,
+                    UnitsName = "unit name",
+                    ValueLabel = "odometer",
+                };
+            }
+
+
+            viewModel.Headline = string.Format("Please enter new {0} value for {1}"
+                , modelData.ValueLabel
+                , modelData.Name
+                );
+            viewModel.ItemValueCurrent = modelData.Value;
+            viewModel.ItemValueUnitName = modelData.UnitsName;
+            viewModel.ItemValueNew = modelData.Value;
+            viewModel.Id = modelData.Id.ToString();
+            viewModel.ItemName = modelData.Name;
+
+            return View(viewModel);
+
         }
 
         /// <summary>

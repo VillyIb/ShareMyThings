@@ -40,17 +40,16 @@
                 @item.Display
             </div>
             <div class="Cell Col2">
-                @*LinkText, ActionName, ControllerName, RouteValues, HtmlAttributes*@
                 @Html.ActionLink("+", "Start", "Use", new { id = @item.Key, Demo = @Model.DemoValue }, new { @class = "ImageStart", title = "Start driving " + @item.Display })
             </div>
             <div class="Cell Col3">
-                @Html.ActionLink("-", "Stop", "Use", new { id = @item.Key }, new { @class = "ImageStop", title = "Finish driving " + @item.Display })
+                @Html.ActionLink("-", "Stop", "Use", new { id = @item.Key, Demo = @Model.DemoValue }, new { @class = "ImageStop", title = "Finish driving " + @item.Display })
             </div>
             <div class="Cell Col4">
-                @Html.ActionLink("?", "OK", "Use", new { id = @item.Key }, new { @class = "ImageQuestionMark", title = "Show status for reservation on " + @item.Display })
+                @Html.ActionLink("?", "OK", "Use", new { id = @item.Key, Demo = @Model.DemoValue }, new { @class = "ImageQuestionMark", title = "Show status for reservation on " + @item.Display })
             </div>
             <div class="Cell Col5">
-                @Html.ActionLink("%", "Change", "Use", new { id = @item.Key }, new { @class = "ImageQuestionMark", title = "Change reservation for " + @item.Display })
+                @Html.ActionLink("%", "Change", "Use", new { id = @item.Key, Demo = @Model.DemoValue }, new { @class = "ImageQuestionMark", title = "Change reservation for " + @item.Display })
             </div>
         </div>
     }

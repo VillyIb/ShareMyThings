@@ -1,4 +1,4 @@
-﻿@model ShareMyThings.Controllers.ViewModelData.UserControllerViewModel
+﻿@model ShareMyThings.ViewModel.Use.OkViewModel
 
 
 @{
@@ -9,7 +9,7 @@
 
 <div class="Table">
     <div class="Title primary">
-        <p>@Model.UserName<br />have a nice trip using<br />@Model.ItemName</p>
+        <p>@Model.Headline</p>
     </div>
     <div class="Heading">
         <div class="Cell">
@@ -33,10 +33,10 @@
             <p></p>
         </div>
         <div class="Cell">
-            <p>14:00</p>
+            <p>@Model.ReservationEnd.Time</p>
         </div>
         <div class="Cell">
-            <p>Passed</p>
+            <p>@Model.ReservationEnd.Due</p>
         </div>
     </div>
     <div class="Row">
@@ -47,10 +47,10 @@
             <p></p>
         </div>
         <div class="Cell">
-            <p>15:00</p>
+            <p>@Model.ReservationSlackEnd.Time</p>
         </div>
         <div class="Cell">
-            <p>0:31</p>
+            <p>@Model.ReservationSlackEnd.Due</p>
         </div>
     </div>
     <div class="Row">
@@ -61,10 +61,10 @@
             <p>*</p>
         </div>
         <div class="Cell">
-            <p>0:01</p>
+            <p>@Model.NextReservationSlackStart.Time</p>
         </div>
         <div class="Cell">
-            <p>1:01</p>
+            <p>@Model.NextReservationSlackStart.Due</p>
         </div>
     </div>
     <div class="Row">
@@ -75,21 +75,21 @@
             <p></p>
         </div>
         <div class="Cell">
-            <p>15:30</p>
+            <p>@Model.NextReservationStart.Time</p>
         </div>
         <div class="Cell">
-            <p>4:31</p>
+            <p>@Model.NextReservationStart.Due</p>
         </div>
     </div>
 </div>
 
 <br />
 <div class="primary">
-    <div class="makeup-warning inline">* @ViewBag.NextName (<div class="inline makeup-highlight">@ViewBag.NextPhone</div>) will be happy if you return before schedule</div>
+    <div class="makeup-warning inline">@Model.NextReservationDetails</div>
 </div>
 <div class="primary">
     <div class="confirm primary">
-        <a href="../OK/@ViewBag.Item" class="button">Refresh</a>
+        <a href="../OK/@Model.ItemId" class="button">Refresh</a>
     </div>
 </div>
 
