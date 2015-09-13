@@ -1,0 +1,91 @@
+﻿/* File: Buttons.css */
+
+  /* http://www.bestcssbuttongenerator.com/#/2 */
+
+  a.button {
+            background-color: #599bb3;
+            -moz-border-radius: 8px;
+            -webkit-border-radius: 8px;
+            border-radius: 8px;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 13px 32px;
+            text-decoration: none;
+        }
+
+        .myButton:hover {
+            background-color: #408c99;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+        /*confirm*/
+
+        .confirm a.button {
+            background-color: #44c767;
+            -moz-border-radius: 8px;
+            -webkit-border-radius: 8px;
+            border-radius: 8px;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 13px 32px;
+            text-decoration: none;
+        }
+
+        .confirm .myButton:hover {
+            background-color: #5cbf2a;
+        }
+
+        /*error*/
+
+        .error a.button {
+            background-color: #fc8d83;
+            -moz-border-radius: 8px;
+            -webkit-border-radius: 8px;
+            border-radius: 8px;
+            display: inline-block;
+            cursor: pointer;
+            color: #ffffff;
+            font-family: Arial;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 32px;
+            text-decoration: none;
+        }
+
+        .error .myButton:hover {
+            background-color: #e4685d;
+        }
+
+        /*attention*/
+
+        .attention a.button {
+            background-color: #f0c911;
+            -moz-border-radius: 8px;
+            -webkit-border-radius: 8px;
+            border-radius: 8px;
+            display: inline-block;
+            cursor: pointer;
+            color: #c92200;
+            font-family: Arial;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 32px;
+            text-decoration: none;
+        }
+
+        .attention .myButton:hover {
+            background-color: #f2ab1e;
+        }
+

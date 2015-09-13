@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Alfa xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ItemList>
+    <AlfaRow>
+      <Key>1</Key>
+      <Display>ItemName</Display>
+    </AlfaRow>
+  </ItemList>
+</Alfa>

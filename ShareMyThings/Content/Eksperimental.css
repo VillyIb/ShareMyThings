@@ -1,0 +1,42 @@
+﻿body {
+}
+
+/* http://www.innofied.com/25-css-best-practices-we-follow-at-innofied/ */
+/* http://htmldog.com/reference/cssproperties/ */
+/* https://github.com/bendc/frontend-guidelines  */
+
+
+/* Explicit put this class on a div to suppress newline */
+.inline {
+    display: inline;
+}
+
+
+.makeup-highlight {
+    font-weight: 700;
+}
+
+.makeup-ok {
+    background-color: #44c767;
+}
+
+.makeup-attention {
+    background-color: #f0c911;
+    color: #000000;
+}
+
+.makeup-warning {
+    background-color: #fc8d83;
+}
+
+.makeup-strong-warning {
+    background-color: #ff0000;
+    font-weight: bold;
+}
+
+.makeup-error {
+    background-color: #fc8d83;
+    font-weight: bold;
+}
+
+

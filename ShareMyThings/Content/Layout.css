@@ -1,0 +1,129 @@
+﻿
+.bodytext {
+    padding: 10px;
+}
+
+.primary {
+    /* top right bottom left */
+    padding: 0px 0px 20px 0px;
+}
+
+.secondary {
+    /* top right bottom left */
+    padding: 0px 0px 10px 0px;
+}
+
+/* table Layout using div */
+
+.Table {
+    display: table;
+}
+
+.Title {
+    display: table-caption;
+    text-align: center;
+}
+
+.Heading {
+    display: table-row;
+    text-align: center;
+}
+
+.Row {
+    display: table-row;
+}
+
+.Cell {
+    display: table-cell;
+    border: solid;
+    border-width: thin;
+    padding: 1px;
+}
+
+
+/* Clickable Images */
+/* clickable image */
+/* see:http://www.pseale.com/blog/2013/09/26/ImageLinksInMVCAreMagicalMostly.aspx */
+
+div.ImageQuestionMark {
+    background-image: url('../../Content/Images/QuestionMark.png');
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    text-indent: -9999px; /* hides the link text */
+    background-position: center center;
+}
+
+a.ImageQuestionMark {
+    background-image: url('../../Content/Images/QuestionMark.png');
+    background-repeat: no-repeat;
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-position: center center;
+    text-indent: -9999px; /* hides the link text */
+}
+
+div.ImageStart {
+    background-image: url('../../Content/Images/Start.gif');
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    text-indent: -9999px; /* hides the link text */
+    background-position: center center;
+}
+
+a.ImageStart {
+    background-image: url('../../Content/Images/Start.gif');
+    background-repeat: no-repeat;
+    display: block;
+    width: 50px;
+    height: 50px;
+    text-indent: -9999px; /* hides the link text */
+    background-position: center center;
+}
+
+div.ImageStop {
+    background-image: url('../../Content/Images/Stop.gif');
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    text-indent: -9999px; /* hides the link text */
+    background-position: center center;
+}
+
+a.ImageStop {
+    background-image: url('../../Content/Images/Stop.gif');
+    background-repeat: no-repeat;
+    display: block;
+    width: 50px;
+    height: 50px;
+    text-indent: -9999px; /* hides the link text */
+    background-position: center center;
+}
+
+/* Use/SelectItem, Select action on item table */
+#XuSelectList .Row .Cell {
+    text-align: center;
+}
+
+#XuSelectList .Row .Col1 {
+    vertical-align: middle;
+    width: 85px;
+}
+
+/* Use/SelectItem, Legend table */
+
+#XuLegend .Row .Col1 {
+    width: 85px;
+}
+
+#XuLegend .Row .Col2 {
+    text-align: center;
+    vertical-align: middle;
+    width: 216px;
+}
+
+table, th, td {
+    padding: 5px 10px 5px 10px; /* Top->Right->Botton->Left */
+}

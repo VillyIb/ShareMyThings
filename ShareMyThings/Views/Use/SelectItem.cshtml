@@ -40,7 +40,8 @@
                 @item.Display
             </div>
             <div class="Cell Col2">
-                @Html.ActionLink("+", "Start", "Use", new { id = @item.Key }, new { @class = "ImageStart", title = "Start driving " + @item.Display })
+                @*LinkText, ActionName, ControllerName, RouteValues, HtmlAttributes*@
+                @Html.ActionLink("+", "Start", "Use", new { id = @item.Key, Demo = @Model.DemoValue }, new { @class = "ImageStart", title = "Start driving " + @item.Display })
             </div>
             <div class="Cell Col3">
                 @Html.ActionLink("-", "Stop", "Use", new { id = @item.Key }, new { @class = "ImageStop", title = "Finish driving " + @item.Display })
@@ -55,11 +56,12 @@
     }
 </div>
 
-<br/>
+<br />
+<br />
 <div class="Table" id="XuLegend">
 
     <div class="Title primary">
-        <p>Ledgend</p>
+        Legend
     </div>
 
     <div class="Heading ">
@@ -70,40 +72,40 @@
             <div>Action</div>
         </div>
     </div>
-    
+
     <div class="Row RowOdd">
         <div class="Cell Col1 ImageStart">
-            X
+
         </div>
         <div class="Cell Col2">
-            Start
+            Start use a reservation
         </div>
     </div>
 
     <div class="Row RowEven">
         <div class="Cell Col1 ImageStop">
-            X
+
         </div>
         <div class="Cell Col2">
-            Stop
+            Stop use a reservation
         </div>
     </div>
 
     <div class="Row RowOdd">
         <div class="Cell Col1 ImageQuestionMark">
-            X
+
         </div>
         <div class="Cell Col2">
-            Status
+            Status on the current reservation
         </div>
     </div>
 
-    <div class="Row RowOdd">
+    <div class="Row RowEven">
         <div class="Cell Col1 ImageQuestionMark">
-            X
+
         </div>
         <div class="Cell Col2">
-            Change
+            Change the current reservation
         </div>
     </div>
 

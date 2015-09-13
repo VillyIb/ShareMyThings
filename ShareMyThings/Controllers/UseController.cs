@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using ShareMyThings.Controllers.ViewModelData;
 using ShareMyThings.Models.Util;
 using ShareMyThings.ViewModel.Use;
+using ShareMyThings.Models.Use;
 
 namespace ShareMyThings.Controllers
 {
@@ -20,7 +21,7 @@ namespace ShareMyThings.Controllers
 
 
         // ReSharper disable once InconsistentNaming
-        public ActionResult OK(String id)
+        public ActionResult OK(string id)
         {
             // Use Case
             // I: User selects OK on th Start page
@@ -53,30 +54,51 @@ namespace ShareMyThings.Controllers
 
         public ActionResult SelectItem()
         {
-            // Use Case
-            // R: A menu for selecting items is shown
-            // I: User selects an item
-            // R: The Start page is shown for this item.
-
-            var itemList = new List<ItemRow>
-            {
-                new ItemRow{Key=1, Display="Aspargsen",Url = "OK/1"},
-                new ItemRow{Key=2, Display="Bønnen",Url = "OK/1"},
-                new ItemRow{Key=3, Display="Chilien",Url = "OK/3"},
-                new ItemRow{Key=4, Display="Rosinen",Url = "OK/4"},
-           };
-
             var model = new SelectItemViewModel
             {
                 Headline = "Select an action on an item",
-                ItemList = itemList
             };
+
+            var useLiveData = true;
+            SelectItem modelData;
+
+            { // DemoData
+                var template = new SelectItem
+                {
+                    ItemList = new List<SelectItemRow>
+                    {
+                        new SelectItemRow {Key=1,Display =  "ItemName" }
+                    }
+                };
+
+                string demoValue;
+
+                if (new DemoUtil<SelectItem>().LoadDemo(out modelData, out demoValue, Request, template))
+                {
+                    model.DemoValue = demoValue;
+                    useLiveData = false;
+                }
+            }
+
+            if (useLiveData)
+            {
+                // TODO get data from Model.
+                modelData = new SelectItem { ItemList = new List<SelectItemRow>() };
+            }
+
+            var itemList = new List<ItemRow>();
+            foreach (var row in modelData.ItemList)
+            {
+                itemList.Add(new ItemRow { Key = row.Key, Display = row.Display, Url = string.Format("OK/{0}", row.Key) });
+            }
+
+            model.ItemList = itemList;
 
             return View(model);
         }
 
 
-        public ActionResult ChangeStartValue(String id)
+        public ActionResult ChangeStartValue(string id)
         {
             // Use Case
             // I: User selects Change from the Start page.
@@ -104,7 +126,7 @@ namespace ShareMyThings.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Start(String id)
+        public ActionResult Start(string id)
         {
             // Use Case
             // I: User scans barcode  
@@ -149,13 +171,13 @@ namespace ShareMyThings.Controllers
         }
 
 
-        public ActionResult Stop(String id)
+        public ActionResult Stop(string id)
         {
             return View();
         }
 
 
-        public ActionResult Change(String id)
+        public ActionResult Change(string id)
         {
             return View();
         }

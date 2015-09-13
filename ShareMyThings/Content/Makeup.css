@@ -1,0 +1,83 @@
+﻿/* File: Makeup.css */
+/* Control presentation NOT used to position things
+    + Colors
+    + Fonts
+    + Background
+    + 
+
+    - Allignment
+*/
+
+body {
+}
+
+#XuSelectList {
+}
+
+    #XuSelectList .Row .Col1 {
+        font-weight: bold;
+    }
+
+    #XuSelectList .RowEven {
+        background-color: lightcyan;
+    }
+
+    #XuSelectList .RowOdd {
+        background-color: lightyellow;
+    }
+
+/* Use/SelectItem, Legend table */
+#XuLegend {
+}
+
+    #XuLegend .Row .Col2 {
+        font-weight: bold;
+    }
+
+    #XuLegend .RowEven {
+        background-color: lightcyan;
+    }
+
+    #XuLegend .RowOdd {
+        background-color: lightyellow;
+    }
+
+
+table, th, td {
+    border: 1px solid black;
+}
+
+.bodytext {
+    font-family: Arial;
+    font-size: 20px;
+    /*font-weight: bold;*/
+}
+
+
+
+.primary {
+}
+
+.secondary {
+}
+
+.Table {
+}
+
+.Title {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.Heading {
+    font-weight: bold;
+    background: lavender;
+}
+
+.Row {
+}
+
+.Cell {
+    border: solid;
+    border-width: thin;
+}

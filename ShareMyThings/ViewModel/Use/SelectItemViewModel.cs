@@ -16,5 +16,7 @@ namespace ShareMyThings.ViewModel.Use
     {
         public String Headline { get; set; }
         public List<ItemRow>  ItemList { get; set; }
+
+        public String DemoValue { get; set; }
     }
 }

@@ -128,16 +128,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Use\SelelectItem.cs" />
+    <Compile Include="Models\Util\DemoUtil.cs" />
     <Compile Include="Models\Util\ItemNameMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Use\SelectItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Use\SelectItem_one.xml" />
+    <Content Include="App_Data\Use\SelectItem_template.xml" />
+    <Content Include="App_Data\Use\SelectItem_two.xml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Buttons.css" />
+    <Content Include="Content\Eksperimental.css" />
+    <Content Include="Content\Images\Start.gif" />
     <Content Include="Content\Images\QuestionMark.png" />
     <Content Include="Content\Images\Start.png" />
     <Content Include="Content\Images\Stop.png" />
+    <Content Include="Content\Images\_Make image transparent.txt" />
+    <Content Include="Content\Layout.css" />
+    <Content Include="Content\Makeup.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -182,9 +193,7 @@
     <Content Include="Views\Use\ChangeStartValue.cshtml" />
     <Content Include="Views\Use\SelectItem.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
