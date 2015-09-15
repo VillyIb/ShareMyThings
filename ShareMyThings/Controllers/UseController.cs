@@ -19,6 +19,32 @@ namespace ShareMyThings.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Calculate and format text and due fields to OK View.
+        /// </summary>
+        /// <param name="time"></param>
+        /// <param name="due"></param>
+        /// <param name="current"></param>
+        /// <param name="now"></param>
+        private static void CalcOkRow(out string time, out string due, DateTime current, DateTime now)
+        {
+            time = string.Format(current.Date != now.Date ? "{0:yyyy-MM-dd HH:mm}" : "{0:HH:mm}", current);
+
+            var isDue = now > current;
+            if (isDue)
+            {
+                due = "passed";
+            }
+            else
+            {
+                var difference = current.Subtract(now);
+
+                due = difference.TotalHours > 24.0d 
+                    ? string.Format("{0}:{1:mm}", (int)difference.TotalHours, current) 
+                    : string.Format(@"{0:hh\:mm}", difference)
+                ;
+            }
+        }
 
         // ReSharper disable once InconsistentNaming
         public ActionResult OK(string id)
@@ -30,25 +56,6 @@ namespace ShareMyThings.Controllers
             // R: Next reservation start time with slack and start time is shwon if there is an reservation at the same date.
             //
             // I: The user can refresh the page to see the next reservation by pressing Refresh
-
-            //var model = new UserControllerViewModel
-            //{
-            //    UserName = "Villy Ib Jørgensen"
-            //};
-
-            //long itemId;
-            //if (long.TryParse(id, out itemId))
-            //{
-            //    model.ItemId = itemId;
-            //    model.ItemName = ItemNameMap.ToName(itemId);
-            //}
-            //else
-            //{
-            //    model.ItemId = ItemNameMap.ToId(id);
-            //    model.ItemName = id;
-            //}
-
-            //return View(model);
 
             var viewModel = new OkViewModel();
 
@@ -100,180 +107,44 @@ namespace ShareMyThings.Controllers
             }
 
 
-            viewModel.Headline = "Headline";
+            viewModel.Headline = modelData.ItemName;
 
             var now = modelData.Now;
+            viewModel.Now = useLiveData ? "" : String.Format("{0:yyyy-MM-dd HH:mm}", now);
+
+            string due;
+            string time;
 
             {
-                var current = modelData.ReservationEnd;
-
-
-                string due;
-                string time;
-
-                TimeSpan difference;
-
-
-                if (current.Date != now.Date)
-                {
-                    // not today
-                    time = string.Format("{0:yyyy-MM-dd HH:mm}", current);
-                }
-                else
-                {
-                    // today
-                    time = string.Format("{0:HH:mm}", current);
-                }
-
-
-                var isDue = now > current;
-                if (isDue)
-                {
-                    due = "passed";
-                }
-                else
-                {
-                    difference = current.Subtract(now);
-
-                    if (difference.TotalHours > 24.0d)
-                    {
-                        // more than 24 hours.
-                        due = string.Format("{0}+ h", (int)difference.TotalHours);
-                    }
-                    else
-                    {
-                        due = string.Format(@"{0:hh\:mm}", difference);
-                    }
-                }
-
+                CalcOkRow(out time, out due, modelData.ReservationEnd, now);
                 viewModel.ReservationEnd = new OkViewModelRow { Alert = "", Due = due, Time = time };
             }
 
             {
-                var current = modelData.ReservationSlackEnd;
-                var isDue = now > current;
-
-                string due;
-                string time;
-
-                TimeSpan difference;
-
-                if (isDue)
-                {
-                    due = "passed";
-                    difference = now.Subtract(current);
-                    if (difference.TotalDays > 1.0d)
-                    {
-                        time = string.Format("-{0} days", (int)difference.TotalDays);
-                    }
-                    else
-                    {
-                        time = string.Format(@"-{0:hh\:mm}", difference);
-                    }
-                }
-                else
-                {
-                    difference = current.Subtract(now);
-
-                    if (difference.TotalDays > 1.0d)
-                    {
-                        time = string.Format("{0:yyyy-MM-dd}", current);
-                        due = string.Format("{0} h", (int)difference.TotalHours);
-                    }
-                    else
-                    {
-                        time = string.Format(@"{0:HH\:mm}", current);
-                        due = difference.ToString(@"hh\:mm");
-                    }
-                }
+                CalcOkRow(out time, out due, modelData.ReservationSlackEnd, now);
                 viewModel.ReservationSlackEnd = new OkViewModelRow { Alert = "", Due = due, Time = time };
             }
 
             {
-                var current = modelData.NextReservationSlackStart;
-                var isDue = now > current;
-
-                string due;
-                string time;
-
-                TimeSpan difference;
-
-                if (isDue)
-                {
-                    due = "passed";
-                    difference = now.Subtract(current);
-                    if (difference.TotalDays > 1.0d)
-                    {
-                        time = string.Format("-{0} days", (int)difference.TotalDays);
-                    }
-                    else
-                    {
-                        time = string.Format(@"-{0:hh\:mm}", difference);
-                    }
-                }
-                else
-                {
-                    difference = current.Subtract(now);
-
-                    if (difference.TotalDays > 1.0d)
-                    {
-                        time = string.Format("{0:yyyy-MM-dd}", current);
-                        due = string.Format("{0} h", (int)difference.TotalHours);
-                    }
-                    else
-                    {
-                        time = string.Format(@"{0:HH\:mm}", current);
-                        due = difference.ToString(@"hh\:mm");
-                    }
-                }
+                CalcOkRow(out time, out due, modelData.NextReservationSlackStart, now);
                 viewModel.NextReservationSlackStart = new OkViewModelRow { Alert = "", Due = due, Time = time };
             }
 
             {
-                var current = modelData.NextReservationStart;
-                var isDue = now > current;
-
-                string due;
-                string time;
-
-                TimeSpan difference;
-
-                if (isDue)
-                {
-                    due = "passed";
-                    difference = now.Subtract(current);
-                    if (difference.TotalDays > 1.0d)
-                    {
-                        time = string.Format("-{0} days", (int)difference.TotalDays);
-                    }
-                    else
-                    {
-                        time = string.Format(@"-{0:hh\:mm}", difference);
-                    }
-                }
-                else
-                {
-                    difference = current.Subtract(now);
-
-                    if (difference.TotalDays > 1.0d)
-                    {
-                        time = string.Format("{0:yyyy-MM-dd}", current);
-                        due = string.Format("{0} h", (int)difference.TotalHours);
-                    }
-                    else
-                    {
-                        time = string.Format(@"{0:hh\:mm}", difference);
-                        due = difference.ToString(@"hh\:mm");
-                    }
-                }
+                CalcOkRow(out time, out due, modelData.NextReservationStart, now);
                 viewModel.NextReservationStart = new OkViewModelRow { Alert = "", Due = due, Time = time };
             }
 
             viewModel.ShowNextReservation = modelData.ShowNextReservation;
-            viewModel.NextReservationDetails = "details";
+
+            viewModel.HasOverlap = modelData.NextReservationSlackStart < modelData.ReservationSlackEnd 
+                ||
+                modelData.NextReservationSlackStart < modelData.ReservationEnd
+            ;
+            viewModel.NextUserName = modelData.NextUserName;
+            viewModel.NextUserPhone = modelData.NextUserPhone;
 
             return View(viewModel);
-
         }
 
 

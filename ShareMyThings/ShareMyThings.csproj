@@ -35,6 +35,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -197,6 +198,7 @@
     <Content Include="Views\Use\OK.cshtml" />
     <Content Include="Views\Use\ChangeStartValue.cshtml" />
     <Content Include="Views\Use\SelectItem.cshtml" />
+    <Content Include="Views\Shared\NextUser.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

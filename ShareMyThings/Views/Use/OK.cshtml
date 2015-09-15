@@ -1,15 +1,15 @@
 ﻿@model ShareMyThings.ViewModel.Use.OkViewModel
 
-
 @{
-    ViewBag.Title = "OK have a nice trip";
-    ViewBag.NextName = "Kirsten Bjerritsgård";
-    ViewBag.NextPhone = "4010 5906";
 }
 
 <div class="Table">
     <div class="Title primary">
         <p>@Model.Headline</p>
+        @if (!string.IsNullOrWhiteSpace(Model.Now))
+        {
+            <p>Now: @Model.Now</p>
+        }
     </div>
     <div class="Heading">
         <div class="Cell">
@@ -53,40 +53,59 @@
             <p>@Model.ReservationSlackEnd.Due</p>
         </div>
     </div>
-    <div class="Row">
-        <div class="Cell">
-            <p>Next reservation starts at</p>
+
+    @if (Model.ShowNextReservation)
+    {
+
+        <div class="Row">
+            <div class="Cell">
+                <p>Next reservation starts at</p>
+            </div>
+            <div class="Cell makeup-warning">
+                <p>*</p>
+            </div>
+            <div class="Cell">
+                <p>@Model.NextReservationSlackStart.Time</p>
+            </div>
+            <div class="Cell">
+                <p>@Model.NextReservationSlackStart.Due</p>
+            </div>
         </div>
-        <div class="Cell makeup-warning">
-            <p>*</p>
+        <div class="Row">
+            <div class="Cell">
+                <p>Latest time of return</p>
+            </div>
+            <div class="Cell makeup-strong-warning">
+                <p></p>
+            </div>
+            <div class="Cell">
+                <p>@Model.NextReservationStart.Time</p>
+            </div>
+            <div class="Cell">
+                <p>@Model.NextReservationStart.Due</p>
+            </div>
         </div>
-        <div class="Cell">
-            <p>@Model.NextReservationSlackStart.Time</p>
-        </div>
-        <div class="Cell">
-            <p>@Model.NextReservationSlackStart.Due</p>
-        </div>
-    </div>
-    <div class="Row">
-        <div class="Cell">
-            <p>Latest time of return</p>
-        </div>
-        <div class="Cell makeup-strong-warning">
-            <p></p>
-        </div>
-        <div class="Cell">
-            <p>@Model.NextReservationStart.Time</p>
-        </div>
-        <div class="Cell">
-            <p>@Model.NextReservationStart.Due</p>
-        </div>
-    </div>
+    }
 </div>
 
 <br />
-<div class="primary">
-    <div class="makeup-warning inline">@Model.NextReservationDetails</div>
-</div>
+@if (Model.ShowNextReservation)
+{
+    if (Model.HasOverlap)
+    {
+        <div class="primary">
+            @*<div class="makeup-warning inline">@string.Format("<name>{0}</name> (<phone>{1}</phone>) will be happy if you return before schedule", Model.NextUserName, Model.NextUserPhone)</div>*@
+            @Html.DisplayFor(e=>e.NextUserName)
+        </div>
+    }
+    else
+    {
+        <div class="primary">
+            <div class="inline">@string.Format("Next user: <name>{0}</name> (<phone>{1}</phone>)", Model.NextUserName, Model.NextUserPhone)</div>
+        </div>
+    }
+}
+
 <div class="primary">
     <div class="confirm primary">
         <a href="../OK/@Model.ItemId" class="button">Refresh</a>

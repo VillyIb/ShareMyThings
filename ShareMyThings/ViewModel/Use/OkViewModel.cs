@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace ShareMyThings.ViewModel.Use
 {
@@ -22,10 +23,15 @@ namespace ShareMyThings.ViewModel.Use
     {
         public int ItemId { get; set; }
 
+        public string Now { get; set; }
+
+        // -- current reservation
+
         public OkViewModelRow ReservationEnd { get; set; }
 
         public OkViewModelRow ReservationSlackEnd { get; set; }
 
+        // --- next reservation 
 
         public bool ShowNextReservation { get; set; }
 
@@ -33,6 +39,13 @@ namespace ShareMyThings.ViewModel.Use
 
         public OkViewModelRow NextReservationStart { get; set; }
 
-        public string NextReservationDetails { get; set; }
+        /// <summary>
+        /// Current and next reservation has overlapping slack.
+        /// </summary>
+        public bool HasOverlap { get; set; }
+
+        public string NextUserName { get; set; }
+
+        public string NextUserPhone { get; set; }
     }
 }
