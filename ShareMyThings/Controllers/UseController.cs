@@ -142,7 +142,13 @@ namespace ShareMyThings.Controllers
                 modelData.NextReservationSlackStart < modelData.ReservationEnd
             ;
             viewModel.NextUserName = modelData.NextUserName;
-            viewModel.NextUserPhone = modelData.NextUserPhone;
+            long t1;
+            viewModel.NextUserPhoneForUrl = long.TryParse(modelData.NextUserPhone, out t1) ? t1 : 0L;
+            viewModel.NextUserPhoneForDisplay = new PhoneNumber { Value = modelData.NextUserPhone };
+
+            var t2 = viewModel.NextUserPhoneForDisplay.ToString();
+            var t3 = string.Format("'{0}'",viewModel.NextUserPhoneForDisplay);
+
 
             return View(viewModel);
         }

@@ -94,14 +94,14 @@
     if (Model.HasOverlap)
     {
         <div class="primary">
-            @*<div class="makeup-warning inline">@string.Format("<name>{0}</name> (<phone>{1}</phone>) will be happy if you return before schedule", Model.NextUserName, Model.NextUserPhone)</div>*@
-            @Html.DisplayFor(e=>e.NextUserName)
+            <div class="makeup-warning inline">@Html.Raw( string.Format("<name>{0}</name> phone: (<a href=\"tel:{1}\">{1}</a>) will be happy if you return before schedule", Model.NextUserName, Model.NextUserPhoneForUrl))</div>
+            @*@Html.DisplayFor( model => model.NextUserPhoneForDisplay)*@
         </div>
     }
     else
     {
         <div class="primary">
-            <div class="inline">@string.Format("Next user: <name>{0}</name> (<phone>{1}</phone>)", Model.NextUserName, Model.NextUserPhone)</div>
+            <div class="inline">@Html.Raw(string.Format("Next user: <name>{0}</name> (<a href=\"tel:{1}\">{2:## #### ####}</a>)", Model.NextUserName, Model.NextUserPhoneForUrl, Model.NextUserPhoneForDisplay))</div>
         </div>
     }
 }
