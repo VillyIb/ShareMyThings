@@ -39,8 +39,8 @@ namespace ShareMyThings.Controllers
             {
                 var difference = current.Subtract(now);
 
-                due = difference.TotalHours > 24.0d 
-                    ? string.Format("{0}:{1:mm}", (int)difference.TotalHours, current) 
+                due = difference.TotalHours > 24.0d
+                    ? string.Format("{0}:{1:mm}", (int)difference.TotalHours, current)
                     : string.Format(@"{0:hh\:mm}", difference)
                 ;
             }
@@ -137,17 +137,19 @@ namespace ShareMyThings.Controllers
 
             viewModel.ShowNextReservation = modelData.ShowNextReservation;
 
-            viewModel.HasOverlap = modelData.NextReservationSlackStart < modelData.ReservationSlackEnd 
+            viewModel.HasOverlap = modelData.NextReservationSlackStart < modelData.ReservationSlackEnd
                 ||
                 modelData.NextReservationSlackStart < modelData.ReservationEnd
             ;
             viewModel.NextUserName = modelData.NextUserName;
             long t1;
-            viewModel.NextUserPhoneForUrl = long.TryParse(modelData.NextUserPhone, out t1) ? t1 : 0L;
-            viewModel.NextUserPhoneForDisplay = new PhoneNumber { Value = modelData.NextUserPhone };
+            viewModel.NextUserPhone = new PhoneNumber { CountryCode = 45, NetworkPrefix = 0, Number = 21174505 };
 
-            var t2 = viewModel.NextUserPhoneForDisplay.ToString();
-            var t3 = string.Format("'{0}'",viewModel.NextUserPhoneForDisplay);
+            var t2 = viewModel.NextUserPhone.ToString();
+            var t3 = viewModel.NextUserPhone.ToString("p");
+            var t4 = viewModel.NextUserPhone.ToString("P");
+            var t5 = viewModel.NextUserPhone.ToString("t");
+            var t6 = viewModel.NextUserPhone.ToString("s");
 
 
             return View(viewModel);
