@@ -94,13 +94,17 @@
     if (Model.HasOverlap)
     {
         <div class="primary">
-            <div class="makeup-warning inline">@Html.Raw( string.Format("<name>{0}</name> phone: (<a href=\"{1:t}\">{1:p}</a>) will be happy if you return before schedule", Model.NextUserName, Model.NextUserPhone))</div>
+            <div class="makeup-warning inline">@Html.Raw(string.Format("<name>{0}</name> phone: (<a href=\"{1:t}\">{1:p}</a>) will be happy if you return before schedule", Model.NextUserName, Model.NextUserPhone))</div>
         </div>
     }
     else
     {
         <div class="primary">
-            <div class="inline">@Html.Raw(string.Format("Next user: <name>{0}</name> (<a href=\"{1:t}\">{1:p}</a>)", Model.NextUserName, Model.NextUserPhone))</div>
+            <div >@Html.Raw(string.Format("Next user: <name>{0}</name> ", Model.NextUserName))</div>
+            <div >@Html.Raw(string.Format("- call :(<a href=\"{0:T}\">{0:g}</a>)", Model.NextUserPhone))</div>
+            <div >@Html.Raw(string.Format("- SMS :(<a href=\"{0:s}\">{0:G}</a>)", Model.NextUserPhone))</div>
+            <div >@Html.Raw(string.Format("- FaceTime :(<a href=\"{0:F}\">{0:g}</a>)", Model.NextUserPhone))</div>
+            <div >@Html.Raw(string.Format("- Skype :(<a href=\"{0:Y}\">{0:g}</a>)", Model.NextUserPhone))</div>
         </div>
     }
 }

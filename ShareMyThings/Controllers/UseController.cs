@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
 using ShareMyThings.Controllers.ViewModelData;
+using ShareMyThings.Models;
 using ShareMyThings.Models.Util;
 using ShareMyThings.ViewModel.Use;
 using ShareMyThings.Models.Use;
@@ -143,13 +145,27 @@ namespace ShareMyThings.Controllers
             ;
             viewModel.NextUserName = modelData.NextUserName;
             long t1;
-            viewModel.NextUserPhone = new PhoneNumber { CountryCode = 45, NetworkPrefix = 0, Number = 21174505 };
+            viewModel.NextUserPhone = new PhoneNumber
+            {
+                CountryCode = "+45"
+                ,
+                AreaCode = ""
+                ,
+                SubscriberNumber = "2117 4505"
+                ,
+                EnabledServiceList = new List<PhoneNumberServcieType> { PhoneNumberServcieType.Call }
+            };
 
-            var t2 = viewModel.NextUserPhone.ToString();
-            var t3 = viewModel.NextUserPhone.ToString("p");
-            var t4 = viewModel.NextUserPhone.ToString("P");
-            var t5 = viewModel.NextUserPhone.ToString("t");
-            var t6 = viewModel.NextUserPhone.ToString("s");
+
+
+
+            viewModel.FormatProvider = Thread.CurrentThread.CurrentCulture;
+
+            //var t2 = viewModel.NextUserPhone.ToString();
+            //var t3 = viewModel.NextUserPhone.ToString("p", null);
+            //var t4 = viewModel.NextUserPhone.ToString("P", null);
+            //var t5 = viewModel.NextUserPhone.ToString("t", null);
+            //var t6 = viewModel.NextUserPhone.ToString("s", null);
 
 
             return View(viewModel);
