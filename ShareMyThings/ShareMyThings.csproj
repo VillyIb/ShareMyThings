@@ -206,7 +206,12 @@
     <Content Include="Views\Shared\NextUser.cshtml" />
     <Content Include="Views\Use\PhoneNumber.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\EU.Iamia.Data\EU.Iamia.Data.csproj">
+      <Project>{888ac35d-e7b9-41e1-a990-e103901b08bd}</Project>
+      <Name>EU.Iamia.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
